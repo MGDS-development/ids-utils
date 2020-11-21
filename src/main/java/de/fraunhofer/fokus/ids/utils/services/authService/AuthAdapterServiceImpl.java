@@ -180,6 +180,7 @@ public class AuthAdapterServiceImpl implements AuthAdapterService {
                                                         .setIssuer(dapsIssuer)));
                         p.authenticate(dynamicAttributeTokenJson, authReply -> {
                             if(authReply.succeeded()){
+								LOGGER.info(authReply.result());
                                 resultHandler.handle(Future.succeededFuture(authReply.result()));
                             } else {
                                 LOGGER.info(authReply.cause());

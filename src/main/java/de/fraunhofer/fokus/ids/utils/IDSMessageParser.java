@@ -17,7 +17,7 @@ import java.nio.charset.Charset;
 import java.util.Optional;
 
 /**
- * @author Vincent Bohlen, vincent.bohlen@fokus.fraunhofer.de
+ * @author Vincent Bohlen, vincent.bohlen@fokus.fraunhofer.de 
  */
 public class IDSMessageParser {
     private static Logger LOGGER = LoggerFactory.getLogger(IDSMessageParser.class.getName());
@@ -62,8 +62,13 @@ public class IDSMessageParser {
         Message idsMessage;
         try{
             idsMessage = serializer.deserialize(header, Message.class);
+            LOGGER.info(header);
+            LOGGER.info(payload);
+            LOGGER.info(idsMessage.toString());
         } catch( Exception e){
             LOGGER.error("Could not deserialize message.");
+            LOGGER.error(header);
+            LOGGER.error(payload);
             return  Optional.empty();
         }
         return Optional.of(new IDSMessage(idsMessage, payload));
